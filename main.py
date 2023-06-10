@@ -21,4 +21,4 @@ async def ecology(ctx,eco="создание товара с разу уже из
     ecology=random.choice(eco)
     await ctx.send(eco)
 
-bot.run("MTEwOTM4NTIwOTkxODUyNTQ3MA.GI7416.LYqHXFy4ChypkzZQbjmfOk_pM1YXo5W9cg9J_8")
+bot.run("")
