@@ -1,5 +1,7 @@
 import discord
 from discord.ext import commands
+import os
+import random
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -10,6 +12,9 @@ bot = commands.Bot(command_prefix='$', intents=intents)
 async def on_ready():
     print(f'We have logged in as {bot.user}')
 
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Привет! Я бот {bot.user}!')
 
 @bot.command()
 async def heh(ctx, count_heh = 5):
@@ -18,5 +23,22 @@ async def heh(ctx, count_heh = 5):
 @bot.command()
 async def ecology(ctx,eco="создание товара с разу уже из экологичных и переробатываемых материалов,Выключайте компьютер ночью, это поможет сэкономить до 1000 кВт ежемесячно,сортировать мусор"):
     await ctx.send(eco)
+
+@bot.command()
+async def Help1(ctx,):
+    await ctx.send("Cпереди команды нужно ставить $;Help1-Эта команда,heh количество-отправляет смайлики heh слитно,mem-присылает случайную смешную картину,ecology-расказывает как сохранить окружающую среду"):
+
+
+@bot.command()
+async def mem(ctx):
+    images=os.listdir('images')
+    img_name=random.choice(images)
+    with open(f'images/{img_name}', 'rb') as f:
+        # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
+        picture = discord.File(f)
+   # Можем передавать файл как параметр!
+    await ctx.send(file=picture)
+ 
+
 
 bot.run("")
